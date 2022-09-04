@@ -4,7 +4,7 @@ const FoodItem = require('../models/foodItem');
 const router = express.Router();
 
 
-router.get('/list', (req, res) => { // we get the list of our data (food items) and add it to .ejs
+router.get('/', (req, res) => { // we get the list of our data (food items) and add it to .ejs
     FoodItem.find().sort({ createdAt: -1 })
         .then(data => {
             res.render('homeList', { title: 'Fridge list', list: data })
@@ -12,7 +12,7 @@ router.get('/list', (req, res) => { // we get the list of our data (food items) 
         .catch(err => console.log(err))
 });
 
-router.post('/list', (req, res) => {
+router.post('/', (req, res) => {
     console.log(req.body)
     const newFoodItem = new FoodItem(req.body)
 
@@ -24,13 +24,13 @@ router.post('/list', (req, res) => {
 })
 
 // add new
-router.get('/list/add', (req, res) => {
+router.get('/add', (req, res) => {
     res.render('addNew', { title: "Add new"})
 })
 
 
 // for each item
-router.get('/list/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const id = req.params.id
     FoodItem.findById(id)
         .then(data => {
@@ -40,7 +40,7 @@ router.get('/list/:id', (req, res) => {
 })
 
 // delete
-router.delete('/list/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const id = req.params.id;
     console.log(FoodItem)
     FoodItem.findByIdAndDelete(id)
@@ -51,7 +51,7 @@ router.delete('/list/:id', (req, res) => {
 })
 
 // update
-// router.put('/list/:id', (req, res) => {
+// router.put('/:id', (req, res) => {
 //     const id = req.params.id;
 //     const item = FoodItem.findById(id)
 //     console.log("Body: ", req.body)
