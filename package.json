@@ -1,0 +1,25 @@
+{
+  "name": "checkfood",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "sass": "node-sass -w scss/ -o css/ --recursive",
+    "start": "nodemon app"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cowsay": "^1.5.0",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.5.4",
+    "morgan": "^1.10.0",
+    "node-sass": "^7.0.1",
+    "superb": "^4.0.0"
+  }
+}

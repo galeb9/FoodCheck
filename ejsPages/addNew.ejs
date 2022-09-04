@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %> 
+<body>
+    <%- include('./partials/nav.ejs') %> 
+
+    <div class="add-new__container content">
+        <h3 class="add-new__title">Add new food</h3>
+        <form action="/list" method="POST">
+            <div class="add-new__input-container item__title">
+                <label for="name">Food name</label>
+                <input class="add-new__input" type="text" id="name" name="name" required>
+            </div>
+
+            <div class="add-new__input-container item__ex-date">
+                <label for="ex-date">Expiration date</label>
+                <input class="add-new__input" type="date" id="ex-date" name="expiryDate">
+            </div>
+
+            <div class="add-new__input-container item__category">
+                <label for="">Category</label>
+                <input class="add-new__input" type="text" id="category" name="category">
+            </div>
+
+            <button class="add-new__btn">ADD</button>
+        </form>
+    
+    </div>
+</body>
+<%- include('./partials/footer.ejs') %> 
+</html>
