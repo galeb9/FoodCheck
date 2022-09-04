@@ -17,11 +17,11 @@ const foodItem_details = (req, res) => {
         .catch(err => console.log(err));
 }
 
-const foodItem_create_get = (req, res) => {
+const foodItem_add_get = (req, res) => {
     res.render('addNew', { title: "Add new"});
 }
 
-const foodItem_create_post = (req, res) => {
+const foodItem_add_item = (req, res) => {
     const newFoodItem = new FoodItem(req.body);
 
     newFoodItem.save()
@@ -44,7 +44,7 @@ const foodItem_delete = (req, res) => {
 module.exports = {
     foodItem_index,
     foodItem_details,
-    foodItem_create_get,
-    foodItem_create_post,
+    foodItem_add_get,
+    foodItem_add_item,
     foodItem_delete
 }
