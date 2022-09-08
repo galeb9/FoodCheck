@@ -1,25 +1,22 @@
 {
-  "name": "checkfood",
+  "name": "food-check-v2",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
-    "sass": "node-sass -w scss/ -o css/ --recursive",
-    "start": "nodemon app"
+    "test": "node server/index.js",
+    "dev": "nodemon server/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cowsay": "^1.5.0",
-    "ejs": "^3.1.8",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
     "express": "^4.18.1",
-    "lodash": "^4.17.21",
-    "mongoose": "^6.5.4",
-    "morgan": "^1.10.0",
-    "node-sass": "^7.0.1",
-    "superb": "^4.0.0"
+    "mongodb": "^4.9.1",
+    "mongoose": "^6.5.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
