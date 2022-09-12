@@ -2,7 +2,7 @@
 	<div class="add-new__container content">
 
         <div class="add-new">
-			<h3 class="add-new__title">Add new food</h3>
+			<!-- <h3 class="add-new__title">Add new food</h3> -->
             <div class="add-new__input-container item__title">
                 <label for="name">Food name</label>
                 <input v-model="name" class="add-new__input" type="text" id="name" name="name" required>

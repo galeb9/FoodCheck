@@ -1,6 +1,6 @@
 const express = require('express');
 const FoodItem = require('../../models/foodItem')
-
+const foodItemController = require('../../controllers/foodItemController')
 const router = express.Router();
 
 // get posts
@@ -25,6 +25,8 @@ router.post('/', (req, res) => {
     .catch(err => console.log("error: ", err));
 
 })
+
+router.get('/', )
 
 // delete list item
 router.delete('/:id', (req, res) => {

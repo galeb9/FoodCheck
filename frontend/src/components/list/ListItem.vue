@@ -1,13 +1,16 @@
 <template>
     <!-- <a class="list__item" href="/"> -->
-    <div class="list__item">
+    <div :class="['list__item', 'border-' + status]">
         <div class="list__item__row">
             <h3 class="title">{{ capitalize(data.name) }}</h3>
-            <p class="expiration">{{ calculateDays(reverseDate(data.expiryDate.split('-'))) }}</p>
+            <p class="expiration">
+                <span>{{ getDaysLeft }}</span> 
+                <span v-if="daysLeft > 0">left</span>
+                <span v-else>Expired</span>    
+            </p>
         </div>
         <div class="list__item__row">
             <!-- <p class="category">{{ data.category }}</p> -->
-            <p>{{ getCurrentDate }}</p>
             <!-- <p>{{ data.isFridge }}</p> -->
         </div> 
         <div @click="$emit('delete')" class="delete__btn">Delete</div>
@@ -22,7 +25,9 @@ export default {
   },
   data() {
     return {
-        currentDate: new Date()
+        currentDate: new Date(),
+        status: '',
+        daysLeft: null
     }
   },
   computed: {
@@ -31,14 +36,11 @@ export default {
         let dd = String(today.getDate()).padStart(2, '0');
         let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         let yyyy = today.getFullYear();
-
-        // this is how you will convert to num to calculate
-        // console.log(Number(dd)) 
-        // console.log(Number(mm)) 
-
-        return  mm + '-' + dd + '-' + yyyy;
+        return  dd + '-' + mm + '-' + yyyy;
     },
-
+    getDaysLeft() {
+        return this.calculateDays(this.reverseDate(this.data.expiryDate.split('-')))
+    }
   },
   methods: {
     capitalize(str) {
@@ -56,10 +58,26 @@ export default {
         return dateArrNum
     },
     calculateDays(expiryDate) {
+        let timeLeft = []
+
         let today = this.getNumDate(this.getCurrentDate);
         let expiredDate = this.getNumDate(expiryDate)
-        console.log(today, expiredDate)
-        // expiredDate - today
+
+        for(let i = 0; i <3; i++) {
+            let result = expiredDate[i] - today[i];
+            timeLeft.push(result)
+        }
+
+        timeLeft[0] <= 3 ? this.status = "warning": null
+        timeLeft[0] <= 0 ? this.status = "expired": null
+
+        this.daysLeft = timeLeft[0]
+
+        let daysLeft =  timeLeft[0] === 1 ?  timeLeft[0] + ' day' : timeLeft[0] > 0 ?  timeLeft[0] + ' days' : '';
+        let monthsLeft = timeLeft[1] ?  timeLeft[1] + ' months' : '';
+        let yearsLeft = timeLeft[2] ?  timeLeft[2] + ' years' : '';
+
+        return `${daysLeft} ${monthsLeft} ${yearsLeft}`
     }
   }
 }
@@ -78,7 +96,7 @@ export default {
     margin: 10px 0;
     
     transform: translateY(0);
-    max-width: 300px;
+    max-width: 360px;
     transition: all 0.2s ease-out 0.01s;
     // cursor: pointer;
 	&:hover {
@@ -102,6 +120,13 @@ export default {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+.border-expired {
+    border-left: 10px solid $error; 
+}
+.border-warning {
+    border-left: 10px solid $warning;
+
 }
 
 </style>
