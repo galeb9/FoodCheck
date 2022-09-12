@@ -1,44 +1,15 @@
 const express = require('express');
-const FoodItem = require('../../models/foodItem')
 const foodItemController = require('../../controllers/foodItemController')
 const router = express.Router();
 
-// get posts
-router.get('/', async (req, res) => {
-    FoodItem.find().sort({ createdAt: -1 })
-        .then(data => {
-            console.log(data)
-            if(data) {
-                res.send(data)
-            }
-        })
-        .catch(err => console.log(err));
-}) 
+// get food items
+router.get('/', foodItemController.get_all);
 
-// add list item
-router.post('/', (req, res) => {
-    const newFoodItem = new FoodItem(req.body);
-    newFoodItem.save()
-    .then(data => {
-        res.status(201).send();
-    })
-    .catch(err => console.log("error: ", err));
+// add new food item
+router.post('/', foodItemController.add_new_food)
 
-})
-
-router.get('/', )
-
-// delete list item
-router.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    console.log(FoodItem)
-    FoodItem.findByIdAndDelete(id)
-        .then(data => {
-            // res.json({ redirect: '/list'});
-            res.status(201).send()
-        })
-        .catch(err => console.log(err));
-})
+// delete food item
+router.delete('/:id', foodItemController.delete_by_id)
 
 
 module.exports = router;
