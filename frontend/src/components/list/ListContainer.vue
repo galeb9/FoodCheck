@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
 <template>
   <div class="list__container">
 	<p v-if="!items.length" class="error">{{ error }}</p>
@@ -36,7 +37,10 @@ export default {
 	async deleteItem (id) {
 		await ItemsService.deleteItem(id);
 		this.items = await ItemsService.getItemsList();
-	}
+	},
+	// async logItem(id) {
+	// 	await ItemsService.getSingleItem(id);
+	// }
   },
   watch: {
 	newData () { // when add new item we added it to items

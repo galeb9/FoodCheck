@@ -1,0 +1,10 @@
+Ideas:
+
+⭐ Add a grocery list 
+    -> can add to it when a item is finished or expired
+
+⭐ How to make it live??
+    -> search ideas
+        o where to post mevn stack app?
+
+⭐ Meal ideas list (later functionality, a big maybe)

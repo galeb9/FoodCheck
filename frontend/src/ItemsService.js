@@ -31,8 +31,30 @@ class FoodService {
         return axios.post(url, item);
     }
 
+    // get single item
+    static getSingleItem(id) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const result = await axios.get(`${url}${id}`);
+                console.log("result:", result)
+                const data = result.data;
+                console.log("data:", data)
+                // resolve(
+                //     data.map(item => ({
+                //         ...item,
+                //         createdAt: new Date(item.createdAt)
+                //     }))
+                // );
+            } catch (err) {
+                console.log(err)
+                reject(err);
+            }
+        })
+    }
+
     // Delete items
     static deleteItem(id) {
+        console.log("Item deleted")
         return axios.delete(`${url}${id}`);
     }
 }

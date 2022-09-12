@@ -22,6 +22,15 @@ const add_new_food = (req, res) => {
     .catch(err => console.log("error: ", err));
 }
 
+// get single
+const get_by_id = (req, res) => {
+    const id = req.params.id;
+    FoodItem.findById(id)
+        .then(data => {
+            res.status(201).send()
+        })
+}   
+
 // delete
 const delete_by_id = (req, res) => {
     const id = req.params.id;
@@ -37,5 +46,6 @@ const delete_by_id = (req, res) => {
 module.exports = {
     get_all,
     add_new_food,
+    get_by_id,
     delete_by_id
 }

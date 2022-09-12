@@ -1,0 +1,15 @@
+🗻 Functionalites:
+    -> app
+        o vue router - switch between pages?
+
+    -> homepage 
+        o list of unasigned/stored, fridge, expired
+    
+    -> store list 
+        o added stuff from used up & expired
+
+    -> single item 
+        o build express routing for :id
+        o build UI
+        o add new - can choose 
+        o edit  - show category, 
