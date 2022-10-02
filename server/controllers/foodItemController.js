@@ -4,7 +4,7 @@ const FoodItem = require('../models/foodItem')
 const get_all = async (req, res) => {
     FoodItem.find().sort({ createdAt: -1 })
     .then(data => {
-        console.log(data)
+        // console.log(data)
         if(data) {
             res.send(data)
         }
@@ -22,7 +22,7 @@ const add_new_food = (req, res) => {
     .catch(err => console.log("error: ", err));
 }
 
-// get single
+// find one
 const get_by_id = (req, res) => {
     const id = req.params.id;
     FoodItem.findById(id)

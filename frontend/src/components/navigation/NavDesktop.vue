@@ -26,7 +26,7 @@ export default {
             nav: [
                 { title: 'Home', link: '/' },
                 { title: 'List', link: '/list' },
-                { title: 'Add new', link: '/list/add' },
+                { title: 'Add new', link: '/add' },
             ]
         }
     }

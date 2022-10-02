@@ -8,8 +8,8 @@ router.get('/', foodItemController.get_all);
 // add new food item
 router.post('/', foodItemController.add_new_food)
 
-// get single food item
-router.post('/:id', foodItemController.get_by_id)
+// get single food item 
+router.post('/:id', foodItemController.get_by_id) // does not work
 
 // delete food item
 router.delete('/:id', foodItemController.delete_by_id)

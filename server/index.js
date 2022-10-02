@@ -5,12 +5,20 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+
+
+
 // middleware
 app.use(bodyParser.json());
 app.use(cors());
 
 const list = require('./routes/api/list');
-app.use('/api/list/', list)
+app.use('/api/list/', list);
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
 
 // Handle production
 if(process.env.NODE_ENV === 'production') {
@@ -20,6 +28,8 @@ if(process.env.NODE_ENV === 'production') {
     // handle SPA
     app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
 }
+
+
 
 // connect to mongoose
 const port = process.env.port || 5000;

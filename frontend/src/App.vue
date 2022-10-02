@@ -1,7 +1,17 @@
 <template>
   <div class="main">
 	<NavDesktop />
-    <ListContainer :newData="newAddedItem" />
+    <ListContainer v-if="false" :newData="newAddedItem" />
+
+
+    <!-- <router-view class="router-view" v-slot="{ Component }">
+      <transition name="fade-in" mode="out-in">
+        <component class="active-component" :is="Component" />
+      </transition>
+    </router-view> -->
+
+	<router-view></router-view>
+
 
 	<Transition name="fade-in">
 		<AddItem 
@@ -17,7 +27,7 @@
 <script>
 import ListContainer from './components/list/ListContainer.vue';
 import NavDesktop from './components/navigation/NavDesktop.vue';
-import AddItem from './components/add-item/AddItem.vue';
+import AddItem from './components/add-item/AddNew.vue';
 
 export default {
   name: 'App',

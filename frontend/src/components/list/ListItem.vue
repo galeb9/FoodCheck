@@ -4,16 +4,16 @@
         <div class="list__item__row">
             <h3 class="title">{{ capitalize(data.name) }}</h3>
             <p class="expiration">
-                <span>{{ getDaysLeft }}</span> 
-                <span v-if="daysLeft > 0">left</span>
-                <span v-else>Expired</span>    
+                <span v-if="data.expiryDate">{{ getDaysLeft }}</span> 
             </p>
         </div>
         <div class="list__item__row">
             <!-- <p class="category">{{ data.category }}</p> -->
             <!-- <p>{{ data.isFridge }}</p> -->
         </div> 
-        <div @click="$emit('delete')" class="delete__btn">Delete</div>
+        <div @click="$emit('delete')" class="delete__btn">
+            <font-awesome-icon class="trash-can__icon" :icon="['fa', 'trash']"/>
+        </div>
     </div>
 </template>
 
@@ -39,15 +39,13 @@ export default {
         return  dd + '-' + mm + '-' + yyyy;
     },
     getDaysLeft() {
-        return this.calculateDays(this.reverseDate(this.data.expiryDate.split('-')))
+        let result = this.calculateDays(this.data.expiryDate)
+        return this.daysLeft > 0 ? result + "left" : "Expired" 
     }
   },
   methods: {
     capitalize(str) {
         return str[0].toUpperCase() + str.slice(1).toLowerCase()
-    },
-    reverseDate(arr) {
-        return arr.reverse().join('-')
     },
     getNumDate(stringDate) {
         let dateArrStr = stringDate.split('-')
@@ -60,11 +58,12 @@ export default {
     calculateDays(expiryDate) {
         let timeLeft = []
 
-        let today = this.getNumDate(this.getCurrentDate);
-        let expiredDate = this.getNumDate(expiryDate)
+        let todayArr = this.getNumDate(this.getCurrentDate);
+        let expiredArr = this.getNumDate(expiryDate)
+        let reversedDate =[...expiredArr].reverse() // reverse string (call in computed)
 
         for(let i = 0; i <3; i++) {
-            let result = expiredDate[i] - today[i];
+            let result = reversedDate[i] - todayArr[i];
             timeLeft.push(result)
         }
 
@@ -72,7 +71,6 @@ export default {
         timeLeft[0] <= 0 ? this.status = "expired": null
 
         this.daysLeft = timeLeft[0]
-
         let daysLeft =  timeLeft[0] === 1 ?  timeLeft[0] + ' day' : timeLeft[0] > 0 ?  timeLeft[0] + ' days' : '';
         let monthsLeft = timeLeft[1] ?  timeLeft[1] + ' months' : '';
         let yearsLeft = timeLeft[2] ?  timeLeft[2] + ' years' : '';
@@ -103,15 +101,27 @@ export default {
 		// max-width: 350px;
 	}
     .delete__btn {
-        background: crimson;
+        // background: crimson;
+        border: 2px solid $error;
         color: white;
         font-size: 14px;
-        padding: 5px 10px;
-        border-radius: $radius;
+        padding: 5px 5px;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         transition: all 0.2s ease-out;
+        .trash-can__icon {
+            color: $error;
+        }
         &:hover {
-            background: red;
+            background: $error;
+            .trash-can__icon {
+                color: white;
+            }
         }
     }
 }

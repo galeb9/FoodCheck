@@ -1,6 +1,10 @@
 🗻 Functionalites:
+
+    
     -> app
-        o vue router - switch between pages?
+        ✔ stick to mvc model
+        ✔ vue router 
+        o switch between pages? (maybe need express?)
 
     -> homepage 
         o list of unasigned/stored, fridge, expired
@@ -12,4 +16,4 @@
         o build express routing for :id
         o build UI
         o add new - can choose 
-        o edit  - show category, 
+        o edit - show category, check used or trash (removes from list)

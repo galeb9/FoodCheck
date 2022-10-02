@@ -2,6 +2,7 @@
 <template>
   <div class="list__container">
 	<p v-if="!items.length" class="error">{{ error }}</p>
+	<p>askdflasdfklčasdf</p>
 	<div class="list">
 		<ListItem
 			v-for="item in items"
@@ -38,9 +39,6 @@ export default {
 		await ItemsService.deleteItem(id);
 		this.items = await ItemsService.getItemsList();
 	},
-	// async logItem(id) {
-	// 	await ItemsService.getSingleItem(id);
-	// }
   },
   watch: {
 	newData () { // when add new item we added it to items
