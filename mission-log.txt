@@ -4,7 +4,7 @@
     -> app
         ✔ stick to mvc model
         ✔ vue router 
-        o switch between pages? (maybe need express?)
+        ✔ switch between pages? (maybe need express?)
 
     -> homepage 
         o list of unasigned/stored, fridge, expired
@@ -17,3 +17,6 @@
         o build UI
         o add new - can choose 
         o edit - show category, check used or trash (removes from list)
+
+📛 Bugs: 
+    -> Every page reloaded by express with Vue router... How to make it work as single page app
