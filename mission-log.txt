@@ -20,3 +20,6 @@
 
 📛 Bugs: 
     -> Every page reloaded by express with Vue router... How to make it work as single page app
+
+✳ start frontend, run from root -> cd frontend && npm run serve
+✳ start backend, run from root -> nodemon server/index.js 
