@@ -1,18 +1,14 @@
 # FoodCheck
+
 Web app for tracking food that you buy and its expiry date.
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
+### If you download project, fire up both to use
 ```
 start frontend, run from root -> cd frontend && npm run serve 
 
 start backend, run from root -> nodemon server/index.js 
 ```
 
-### Compiles and minifies for production
-```
-npm run build
+## What I learned
+
+- MEVN stack (MongoDB, Express, Vue.js, Node.js)
