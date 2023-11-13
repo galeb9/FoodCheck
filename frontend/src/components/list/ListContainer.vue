@@ -2,7 +2,6 @@
 <template>
   <div class="list__container">
 	<p v-if="!items.length" class="error">{{ error }}</p>
-	<p>askdflasdfklčasdf</p>
 	<div class="list">
 		<ListItem
 			v-for="item in items"

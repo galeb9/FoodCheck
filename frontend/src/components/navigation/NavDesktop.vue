@@ -25,8 +25,8 @@ export default {
         return {
             nav: [
                 { title: 'Home', link: '/' },
-                { title: 'List', link: '/list' },
-                { title: 'Add new', link: '/add' },
+                // { title: 'List', link: '/list' },
+                // { title: 'Add new', link: '/add' },
             ]
         }
     }
