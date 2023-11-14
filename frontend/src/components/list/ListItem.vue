@@ -94,7 +94,7 @@ export default {
 .list__item {
   padding: 15px 15px;
   border-radius: $radius;
-  box-shadow: rgba(0, 0, 0, 0.34) 0px 3px 8px;
+  box-shadow: var(--item-shadow);
   display: flex;
   justify-content: space-between;
   align-items: center;

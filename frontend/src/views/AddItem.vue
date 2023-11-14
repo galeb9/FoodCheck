@@ -1,42 +1,39 @@
 <template>
   <div class="add-item">
-    <h1>Add item</h1>
     <AddNew
-        v-if="isVisible" 
-		@close-overlay="closeOverlay" 
-		@new-data="addNewItem"
-	/>
+      v-if="isVisible"
+      @close-overlay="closeOverlay"
+      @new-data="addNewItem"
+    />
   </div>
 </template>
 
 <script>
-import AddNew from '../components/add-item/AddNew.vue'
+import AddNew from "../components/add-item/AddNew.vue";
 export default {
-    name: "AddItem",
-    components: {
-      AddNew
+  name: "AddItem",
+  components: {
+    AddNew,
+  },
+  data() {
+    return {
+      isVisible: true,
+      newAddedItem: null,
+    };
+  },
+  methods: {
+    togglePopup() {
+      this.isVisible = !this.isVisible;
     },
-    data () {
-      return {
-        isVisible: true,
-        newAddedItem: null,
-      }
+    closeOverlay(value) {
+      this.isVisible = value;
     },
-    methods: {
-      togglePopup () {
-        this.isVisible = !this.isVisible
-      }, 
-      closeOverlay (value) {
-        this.isVisible = value
-      },
-      addNewItem (item) {
-        this.newAddedItem = item;
-        console.log("New item: ", item)
-      }
-    }
-}
+    addNewItem(item) {
+      this.newAddedItem = item;
+      console.log("New item: ", item);
+    },
+  },
+};
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

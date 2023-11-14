@@ -1,8 +1,8 @@
 <template>
-  <div class="main">
-	<NavDesktop />
-    <ListContainer v-if="false" :newData="newAddedItem" />
-
+  <div>
+    <div class="nav-container">
+      <NavDesktop />
+    </div>
 
     <!-- <router-view class="router-view" v-slot="{ Component }">
       <transition name="fade-in" mode="out-in">
@@ -10,120 +10,67 @@
       </transition>
     </router-view> -->
 
-	<router-view></router-view>
-
-
-	<Transition name="fade-in">
-		<AddItem 
-			v-if="isVisible" 
-			@close-overlay="closeOverlay" 
-			@new-data="addNewItem"
-		/>
-	</Transition>
-	<div @click="togglePopup" :class="['show__add-item', {'hide__add-item': isVisible}]">+</div>
+    <div class="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import ListContainer from './components/list/ListContainer.vue';
-import NavDesktop from './components/navigation/NavDesktop.vue';
-import AddItem from './components/add-item/AddNew.vue';
+import NavDesktop from "./components/navigation/NavDesktop.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    ListContainer,
-	NavDesktop,
-	AddItem
+    NavDesktop,
   },
-  data () {
-	return {
-		isVisible: false,
-		newAddedItem: null,
-	}
+  data() {
+    return {
+      isVisible: false,
+      newAddedItem: null,
+    };
   },
-  methods: {
-	togglePopup () {
-		this.isVisible = !this.isVisible
-	}, 
-	closeOverlay (value) {
-		this.isVisible = value
-	},
-	addNewItem (item) {
-		this.newAddedItem = item;
-		console.log("New item: ", item)
-	}
-  }
-}
+};
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+// css variables
+:root {
+  --item-shadow: rgba(0, 0, 0, 0.34) 0px 3px 8px;
+}
+
 body {
-	background-color: $bg;
+  background-color: $bg;
 }
 #app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	min-height: 100vh;
-	font-family: 'Noto Sans', sans-serif;
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 15px 20px;
-	ul {
-		list-style: none;
-	}
-	a {
-		text-decoration: none;
-		color: inherit;
-	}
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Noto Sans", sans-serif;
 
-	// toggle popup css
-
-	.show__add-item {
-		position: fixed;
-		bottom: 15px;
-		right: 15px;
-
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		font-size: 40px;
-		background: $secondary;
-		width: 55px;
-		height: 55px;
-		color: white;
-		padding: 6px;
-		border-radius: 50%;
-
-		cursor: pointer;
-		transition: all 0.2s ease-out 0.01s;
-		&:hover {
-			transform: translateY(-5px);
-		}
-	}
-	.hide__add-item {
-		background: red ;
-		transform: rotate(45deg);
-		&:hover {
-			transform: rotate(45deg) translateX(0px);
-		}
-	}
-	// add-item transition 
-	.fade-in-enter-active,
-	.fade-in-leave-active {
-	transition: opacity 0.5s ease;
-	}
-	.fade-in-enter-from,
-	.fade-in-leave-to {
-	opacity: 0;
-	}
+  min-height: 100vh;
+  ul {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .nav-container {
+    box-shadow: var(--item-shadow);
+    border-bottom: 2px solid $secondary;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+  }
 }
 </style>
