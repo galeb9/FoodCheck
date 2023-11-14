@@ -36,7 +36,7 @@ export default {
       let dd = String(today.getDate()).padStart(2, "0");
       let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
       let yyyy = today.getFullYear();
-      return dd + " " + mm + " " + yyyy;
+      return dd + "-" + mm + "-" + yyyy;
     },
     getDaysLeft() {
       let result = this.calculateDays(this.data.expiryDate);
@@ -50,20 +50,21 @@ export default {
     getNumDate(stringDate) {
       let dateArrStr = stringDate.split("-");
       let dateArrNum = [];
+
       for (let i = 0; i < dateArrStr.length; i++) {
         dateArrNum.push(Number(dateArrStr[i]));
       }
+
       return dateArrNum;
     },
     calculateDays(expiryDate) {
-      console.log("expiryDate", expiryDate);
       let timeLeft = [];
 
       let todayArr = this.getNumDate(this.getCurrentDate);
+
       let expiredArr = this.getNumDate(expiryDate);
-      console.log("expiredArr", expiredArr);
+
       let reversedDate = [...expiredArr].reverse(); // reverse string (call in computed)
-      console.log("reversedDate", reversedDate);
 
       for (let i = 0; i < 3; i++) {
         let result = reversedDate[i] - todayArr[i];
@@ -74,15 +75,16 @@ export default {
       timeLeft[0] <= 0 ? (this.status = "expired") : null;
 
       this.daysLeft = timeLeft[0];
+
       let daysLeft =
         timeLeft[0] === 1
           ? timeLeft[0] + " day"
           : timeLeft[0] > 0
           ? timeLeft[0] + " days"
           : "";
+
       let monthsLeft = timeLeft[1] ? timeLeft[1] + " months" : "";
       let yearsLeft = timeLeft[2] ? timeLeft[2] + " years" : "";
-      console.log(`${daysLeft} ${monthsLeft} ${yearsLeft}`);
 
       return `${daysLeft} ${monthsLeft} ${yearsLeft}`;
     },

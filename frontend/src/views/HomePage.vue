@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <ListContainer :newData="newAddedItem" />
+    <ListContainer />
     <!-- <BasePopup
       :isVisible="isVisible"
       @close="closeOverlay"

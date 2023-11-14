@@ -1,71 +1,70 @@
 <!-- eslint-disable vue/no-deprecated-v-on-native-modifier -->
 <template>
   <div class="list__container">
-	<p v-if="!items.length" class="error">{{ error }}</p>
-	<div class="list">
-		<ListItem
-			v-for="item in items"
-			:key="item._id"
-			:data="item"
-			@delete="deleteItem(item._id)" 
-		/>
-	</div>
-
+    <p v-if="!items.length" class="error">{{ error }}</p>
+    <div class="list">
+      <ListItem
+        v-for="item in items"
+        :key="item._id"
+        :data="item"
+        @delete="deleteItem(item._id)"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import ListItem from './ListItem.vue'
-import ItemsService from '../../ItemsService'
+import ListItem from "./ListItem.vue";
+import ItemsService from "../../ItemsService";
 
 export default {
-  name: 'ListContainer',
+  name: "ListContainer",
   props: {
-	newData: { type: Object, default: () => {} }
+    newData: { type: Object, default: () => {} },
   },
   components: {
-    ListItem
+    ListItem,
   },
-  data () {
+  data() {
     return {
-		items: [],
-		error: null,
-		newItem: null
-    }
+      items: [],
+      error: null,
+      newItem: null,
+    };
   },
   methods: {
-	async deleteItem (id) {
-		await ItemsService.deleteItem(id);
-		this.items = await ItemsService.getItemsList();
-	},
+    async deleteItem(id) {
+      await ItemsService.deleteItem(id);
+      this.items = await ItemsService.getItemsList();
+    },
   },
   watch: {
-	newData () { // when add new item we added it to items
-		if(this.newData) {
-			this.newItem = this.newData
-			this.items.unshift(this.newItem)
-			this.newItem = null
-		}
-	}
+    newData() {
+      // when add new item we added it to items
+      if (this.newData) {
+        this.newItem = this.newData;
+        this.items.unshift(this.newItem);
+        this.newItem = null;
+      }
+    },
   },
-  async created () {
-	try {
-		this.error = null;
-		this.items = await ItemsService.getItemsList();
-	} catch (error) {
-		this.error = error
-	}
-  }
-}
+  async created() {
+    try {
+      this.error = null;
+      this.items = await ItemsService.getItemsList();
+    } catch (error) {
+      this.error = error;
+    }
+  },
+};
 </script>
 
 <style lang="scss">
-	.list__container {
-
-		.list {
-			display: flex;
-			flex-direction: column;
-			padding: 20px 0;
-		}
-	}
+.list__container {
+  .list {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+  }
+}
 </style>
