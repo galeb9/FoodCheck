@@ -31,6 +31,8 @@ export default {
     addNewItem(item) {
       this.newAddedItem = item;
       console.log("New item: ", item);
+      this.$router.push("/");
+      //navigate programatically to list or home page
     },
   },
 };
