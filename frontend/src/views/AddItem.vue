@@ -1,10 +1,6 @@
 <template>
   <div class="add-item">
-    <AddNew
-      v-if="isVisible"
-      @close-overlay="closeOverlay"
-      @new-data="addNewItem"
-    />
+    <AddNew />
   </div>
 </template>
 
@@ -17,21 +13,12 @@ export default {
   },
   data() {
     return {
-      isVisible: true,
       newAddedItem: null,
     };
   },
   methods: {
-    togglePopup() {
-      this.isVisible = !this.isVisible;
-    },
-    closeOverlay(value) {
-      this.isVisible = value;
-    },
     addNewItem(item) {
       this.newAddedItem = item;
-      console.log("New item: ", item);
-      this.$router.push("/");
     },
   },
 };

@@ -2,9 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import HomePage from "@/views/HomePage.vue";
 import StoreList from "@/views/StoreList.vue";
-import SingleItem from "@/views/SingleItem.vue";
+// import SingleItem from "@/views/SingleItem.vue";
 import AddItem from "@/views/AddItem.vue";
-
 import NotFound from "@/views/NotFound.vue";
 
 const router = createRouter({
@@ -20,11 +19,11 @@ const router = createRouter({
     //     name: 'HomePage',
     //     component: HomePage,
     // },
-    {
-      path: "/home/:id",
-      name: "SingleItem",
-      component: SingleItem,
-    },
+    // {
+    //   path: "/home/:id",
+    //   name: "SingleItem",
+    //   component: SingleItem,
+    // },
     {
       path: "/add",
       name: "AddItem",

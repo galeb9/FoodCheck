@@ -58,14 +58,18 @@ export default {
         category: this.category,
       };
 
-      await ItemsService.insertItem(item); // something goes wrong here
+      // something goes wrong here
+      await ItemsService.insertItem(item);
 
-      this.$emit("newData", item); // transfer data to ListContainer
+      // transfer data to ListContainer
+      this.$emit("newData", item);
 
+      this.resetForm();
+    },
+    resetForm() {
       this.name = null;
       this.expiryDate = null;
       this.category = null;
-      this.$emit("closeOverlay", false);
     },
   },
 };
@@ -115,14 +119,4 @@ export default {
     cursor: pointer;
   }
 }
-// .add-new__overlay {
-//   background: rgba(#000000, 0.5);
-//   width: 100%;
-//   height: 100%;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   z-index: 1;
-//   cursor: pointer;
-// }
 </style>
